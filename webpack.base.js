@@ -97,6 +97,9 @@ module.exports = {
             ...cssLoders
         ]
     },
+    resolve: {
+        extensions: ['.js', '.jsx', '.json', '.css']
+    },
     plugins: [new HtmlWebpackPlugin({
         title: 'react-light-cli',
         template: 'index.html',
