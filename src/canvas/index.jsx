@@ -1,7 +1,17 @@
 import * as React from 'react';
 
 import BasicUsageCanvas from './basic_usage';
-import DrawingShapes from './drawing_shapes';
+import {
+    DrawingRectangle,
+    DrawingPath,
+    DrawingSmile,
+    DrawingLines,
+    DrawingArcs,
+    DrawingQuadraticBezier,
+    DrawingCubicBezier,
+    DrawingCombinePaths,
+    DrawingArcToExample,
+} from './drawing_shapes';
 
 import './index.css';
 
@@ -11,11 +21,11 @@ export default function CanvasLayer() {
             <div className="accordion" id="accordionExample">
                 <div className="accordion-item">
                     <h2 className="accordion-header">
-                        <button className="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                        <button className="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
                             Basic usage of canvas
                         </button>
                     </h2>
-                    <div id="collapseOne" className="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+                    <div id="collapseOne" className="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
                     <div className="accordion-body">
                         <BasicUsageCanvas />
                     </div>
@@ -23,13 +33,21 @@ export default function CanvasLayer() {
                 </div>
                 <div className="accordion-item">
                     <h2 className="accordion-header">
-                    <button className="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                    <button className="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
                         Drawing shapes
                     </button>
                     </h2>
-                    <div id="collapseTwo" className="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
+                    <div id="collapseTwo" className="accordion-collapse collapse show" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
                     <div className="accordion-body">
-                        <DrawingShapes />
+                        <DrawingRectangle />
+                        <DrawingPath />
+                        <DrawingSmile />
+                        <DrawingLines />
+                        <DrawingArcs />
+                        <DrawingQuadraticBezier />
+                        <DrawingCubicBezier />
+                        <DrawingCombinePaths />
+                        <DrawingArcToExample />
                     </div>
                     </div>
                 </div>
