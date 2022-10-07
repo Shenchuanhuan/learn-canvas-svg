@@ -4,7 +4,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const cssLoders = [
     {
         test: /\.css$/,
-        use: 'css-loader',
+        use: ['style-loader', 'css-loader'],
         exclude: /node_modules/
     }
 ]
@@ -82,7 +82,7 @@ const jsonLoader = [
 ]
 
 module.exports = {
-    entry: "./index.js",
+    entry: "./index.jsx",
     output: {
         filename: '[name].bundle.js',
         path: path.resolve(__dirname, 'dist'),
@@ -98,7 +98,10 @@ module.exports = {
         ]
     },
     plugins: [new HtmlWebpackPlugin({
-        title: 'react-light-cli',
+        title: 'learn canvas',
         template: 'index.html',
     })],
+    resolve: {
+        extensions: ['.jsx', '.css', '.json', '...'],
+    }
 }
