@@ -214,11 +214,34 @@ export function DrawingArcToExample() {
         if (canvasDOM.current && canvasDOM.current.getContext) {
             const ctx = canvasDOM.current.getContext('2d');
 
-            // arcto line
+            // Tangential lines
             ctx.beginPath();
+            ctx.strokeStyle = 'gray';
             ctx.moveTo(200, 20);
-            ctx.arcTo(200, 130, 50, 20, 40);
+            ctx.lineTo(200, 130);
+            ctx.lineTo(50, 20);
             ctx.stroke();
+
+            // Arc
+            ctx.beginPath();
+            ctx.strokeStyle = 'black';
+            ctx.lineWidth = 5;
+            ctx.moveTo(200, 20);
+            ctx.arcTo(200,130, 50,20, 40);
+            ctx.stroke();
+
+            // Start point
+            ctx.beginPath();
+            ctx.fillStyle = 'blue';
+            ctx.arc(200, 20, 5, 0, 2 * Math.PI);
+            ctx.fill();
+
+            // Control points
+            ctx.beginPath();
+            ctx.fillStyle = 'red';
+            ctx.arc(200, 130, 5, 0, 2 * Math.PI); // Control point one
+            ctx.arc(50, 20, 5, 0, 2 * Math.PI);   // Control point two
+            ctx.fill();
         }
     };
 
@@ -248,16 +271,93 @@ export function DrawingCombinePaths() {
         if (canvasDOM.current && canvasDOM.current.getContext) {
             const ctx = canvasDOM.current.getContext('2d');
 
-            // Cubic curves example
+            roundedRect(ctx, 12, 12, 150, 150, 15);
+            roundedRect(ctx, 19, 19, 150, 150, 9);
+            roundedRect(ctx, 53, 53, 49, 33, 10);
+            roundedRect(ctx, 53, 119, 49, 16, 6);
+            roundedRect(ctx, 135, 53, 49, 33, 10);
+            roundedRect(ctx, 135, 119, 25, 49, 10);
+
             ctx.beginPath();
-            ctx.moveTo(75, 40);
-            ctx.bezierCurveTo(75, 37, 70, 25, 50, 25);
-            ctx.bezierCurveTo(20, 25, 20, 62.5, 20, 62.5);
-            ctx.bezierCurveTo(20, 80, 40, 102, 75, 120);
-            ctx.bezierCurveTo(110, 102, 130, 80, 130, 62.5);
-            ctx.bezierCurveTo(130, 62.5, 130, 25, 100, 25);
-            ctx.bezierCurveTo(85, 25, 75, 37, 75, 40);
+            ctx.arc(37, 37, 13, Math.PI / 7, -Math.PI / 7, false);
+            ctx.lineTo(31, 37);
             ctx.fill();
+
+            for (let i = 0; i < 8; i++) {
+                ctx.fillRect(51 + i * 16, 35, 4, 4);
+            }
+
+            for (let i = 0; i < 6; i++) {
+                ctx.fillRect(115, 51 + i * 16, 4, 4);
+            }
+
+            for (let i = 0; i < 8; i++) {
+                ctx.fillRect(51 + i * 16, 99, 4, 4);
+            }
+
+            ctx.beginPath();
+            ctx.moveTo(83, 116);
+            ctx.lineTo(83, 102);
+            ctx.bezierCurveTo(83, 94, 89, 88, 97, 88);
+            ctx.bezierCurveTo(105, 88, 111, 94, 111, 102);
+            ctx.lineTo(111, 116);
+            ctx.lineTo(106.333, 111.333);
+            ctx.lineTo(101.666, 116);
+            ctx.lineTo(97, 111.333);
+            ctx.lineTo(92.333, 116);
+            ctx.lineTo(87.666, 111.333);
+            ctx.lineTo(83, 116);
+            ctx.fill();
+
+            ctx.fillStyle = 'white';
+            ctx.beginPath();
+            ctx.moveTo(91, 96);
+            ctx.bezierCurveTo(88, 96, 87, 99, 87, 101);
+            ctx.bezierCurveTo(87, 103, 88, 106, 91, 106);
+            ctx.bezierCurveTo(94, 106, 95, 103, 95, 101);
+            ctx.bezierCurveTo(95, 99, 94, 96, 91, 96);
+            ctx.moveTo(103, 96);
+            ctx.bezierCurveTo(100, 96, 99, 99, 99, 101);
+            ctx.bezierCurveTo(99, 103, 100, 106, 103, 106);
+            ctx.bezierCurveTo(106, 106, 107, 103, 107, 101);
+            ctx.bezierCurveTo(107, 99, 106, 96, 103, 96);
+            ctx.fill();
+
+            ctx.fillStyle = 'black';
+            ctx.beginPath();
+            ctx.arc(101, 102, 2, 0, Math.PI * 2, true);
+            ctx.fill();
+
+            ctx.beginPath();
+            ctx.arc(89, 102, 2, 0, Math.PI * 2, true);
+            ctx.fill();
+        }
+    };
+
+    useEffect(drawCanvas, []);
+
+    return (
+        <canvas ref={canvasDOM} width="150" height="150">
+            Your browser doesn't support canvas...
+        </canvas>
+    );
+};
+
+export function DrawingPath2d() {
+    const canvasDOM = useRef(null);
+
+    const drawCanvas = () => {
+        if (canvasDOM.current && canvasDOM.current.getContext) {
+            const ctx = canvasDOM.current.getContext('2d');
+
+            const rectangle = new Path2D();
+            rectangle.rect(10, 10, 50, 50);
+
+            const circle = new Path2D();
+            circle.arc(100, 35, 25, 0, 2 * Math.PI);
+
+            ctx.stroke(rectangle);
+            ctx.fill(circle);
         }
     };
 

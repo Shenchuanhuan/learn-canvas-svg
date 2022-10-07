@@ -11,11 +11,52 @@ import {
     DrawingCubicBezier,
     DrawingCombinePaths,
     DrawingArcToExample,
+    DrawingPath2d,
 } from './drawing_shapes';
 
 import './index.css';
 
 export default function CanvasLayer() {
+    const examples = [
+        {title: 'Drawing Rectangle Example', component: <DrawingRectangle />, id: 'shapeRectangle'},
+        {title: 'Drawing Path Example', component: <DrawingPath />, id: 'shapePath'},
+        {title: 'Drawing Smile Example', component: <DrawingSmile />, id: 'shapeSmile'},
+        {title: 'Drawing Lines Example', component: <DrawingLines />, id: 'shapeLines'},
+        {title: 'Drawing Arcs Example', component: <DrawingArcs />, id: 'shapeArcs'},
+        {title: 'Drawing ArcTo Example', component: <DrawingArcToExample />, id: 'shapeArcto'},
+        {title: 'Drawing Quadratic Bezier Example', component: <DrawingQuadraticBezier />, id: 'shapeQuadratic'},
+        {title: 'Drawing Cubic Bezier Example', component: <DrawingCubicBezier />, id: 'shapeCubic'},
+        {title: 'Drawing Combine Paths Example', component: <DrawingCombinePaths />, id: 'shapeCombinePath'},
+        {title: 'Drawing Path2D Example', component: <DrawingPath2d />, id: 'shapePath2D'},
+    ];
+
+    const renderShapesExamples = () => {
+        return examples.map(item => (
+            <div className="accordion-item">
+                <h2 className="accordion-header">
+                    <button
+                        className="accordion-button collapsed"
+                        type="button"
+                        data-bs-toggle="collapse"
+                        data-bs-target={`#${item.id}`}
+                        aria-expanded="false"
+                        aria-controls={item.id}>
+                        {item.title}
+                    </button>
+                </h2>
+                <div
+                    id={item.id}
+                    className="accordion-collapse collapse"
+                    aria-labelledby="headingOne"
+                    data-bs-parent="#shapes">
+                    <div className="accordion-body">
+                        {item.component}
+                    </div>
+                </div>
+            </div>
+        ));
+    };
+
     return (
         <div className="canvas-layout">
             <div className="accordion" id="accordionExample">
@@ -26,9 +67,9 @@ export default function CanvasLayer() {
                         </button>
                     </h2>
                     <div id="collapseOne" className="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
-                    <div className="accordion-body">
-                        <BasicUsageCanvas />
-                    </div>
+                        <div className="accordion-body">
+                            <BasicUsageCanvas />
+                        </div>
                     </div>
                 </div>
                 <div className="accordion-item">
@@ -39,15 +80,9 @@ export default function CanvasLayer() {
                     </h2>
                     <div id="collapseTwo" className="accordion-collapse collapse show" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
                     <div className="accordion-body">
-                        <DrawingRectangle />
-                        <DrawingPath />
-                        <DrawingSmile />
-                        <DrawingLines />
-                        <DrawingArcs />
-                        <DrawingQuadraticBezier />
-                        <DrawingCubicBezier />
-                        <DrawingCombinePaths />
-                        <DrawingArcToExample />
+                        <div className="accordion" id="shapes">
+                            {renderShapesExamples()}
+                        </div>
                     </div>
                     </div>
                 </div>
