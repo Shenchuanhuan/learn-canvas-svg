@@ -7,6 +7,7 @@ import {
 } from 'react-router-dom';
 
 import CanvasLayer from './canvas';
+import CanvasPlayground from './playground/canvas';
 
 const Main = () => (
     <div>
@@ -19,6 +20,9 @@ const Main = () => (
                     </li>
                     <li className="nav-item">
                         <NavLink to="/canvas" className="nav-link">Canvas</NavLink>
+                    </li>
+                    <li className="nav-item">
+                        <NavLink to="/canvasplayground" className="nav-link">CanvasPlayground</NavLink>
                     </li>
                     <li className="nav-item">
                         <a className="nav-link disabled">Disabled</a>
@@ -39,6 +43,10 @@ const router = createBrowserRouter([
             {
                 path: 'canvas',
                 element: <CanvasLayer />,
+            },
+            {
+                path: 'canvasplayground',
+                element: <CanvasPlayground />,
             }
         ]
     },
